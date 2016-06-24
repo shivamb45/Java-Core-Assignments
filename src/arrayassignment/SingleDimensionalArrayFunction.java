@@ -23,17 +23,47 @@ public class SingleDimensionalArrayFunction {
 		}
 		return minimum;
 	}
+	static public void sort(int input[]){
+		int copiedReference[]=java.util.Arrays.copyOf(input,input.length);
+		java.util.Arrays.parallelSort(copiedReference);
+		for(int i:copiedReference){
+			System.out.println(" " + i);
+		}
+	}
 	static public void frequency(int x[])
 	{
-		/*Incomplete
-		 * 
-		 */
+		int copiedReference[]=java.util.Arrays.copyOf(x,x.length);
+		java.util.Arrays.parallelSort(copiedReference);
+		FrequencyStat tracker[]=new FrequencyStat[copiedReference.length];
+		tracker[0].number=copiedReference[0];
+		tracker[0].frequency=1;
+		int totalTrackerItems=0;
+		for(int i=1;i<copiedReference.length;i++)
+		{
+			if(tracker[totalTrackerItems].number==copiedReference[i])
+			{
+				tracker[totalTrackerItems].frequency++;
+			}
+			else{
+				totalTrackerItems++;
+				tracker[totalTrackerItems].number=copiedReference[i];
+				tracker[totalTrackerItems].frequency=1;
+			}
+		}
+		for(FrequencyStat a:tracker)
+		{
+			System.out.println(" The Number " + a.number + " Ocurred " + a.frequency + "times");
+		}
+		
 	}
 }
-class FrequencyStat{
+
+class FrequencyStat
+{
 	int number;
 	int frequency;
-	/*incomplete
-	 * 
-	 */
+	FrequencyStat(){
+		number=0;
+		frequency=0;
+	}
 }
