@@ -35,6 +35,7 @@ public class SingleDimensionalArrayFunction {
 		int copiedReference[]=java.util.Arrays.copyOf(x,x.length);
 		java.util.Arrays.parallelSort(copiedReference);
 		FrequencyStat tracker[]=new FrequencyStat[copiedReference.length];
+		tracker[0]=new FrequencyStat();
 		tracker[0].number=copiedReference[0];
 		tracker[0].frequency=1;
 		int totalTrackerItems=0;
@@ -46,13 +47,14 @@ public class SingleDimensionalArrayFunction {
 			}
 			else{
 				totalTrackerItems++;
+				tracker[totalTrackerItems]=new FrequencyStat();
 				tracker[totalTrackerItems].number=copiedReference[i];
 				tracker[totalTrackerItems].frequency=1;
 			}
 		}
-		for(FrequencyStat a:tracker)
+		for(int i=0;i<=totalTrackerItems;i++)
 		{
-			System.out.println(" The Number " + a.number + " Ocurred " + a.frequency + "times");
+			System.out.println(" The Number " + tracker[i].number + " Ocurred " + tracker[i].frequency + " times");
 		}
 		
 	}
